@@ -844,6 +844,8 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
             @Override
             public void onEmotionSelected(boolean isSelect, int position) {
                 mGiftSentBtn.setEnabled(isSelect);
+                //将数据职位默认值  1
+                mGiftSendList.setText(mGiftSendNumBeans.get(mGiftSendNumBeans.size()-1).getNum()+"");
                 if ("0".equals(giftList.get(position).getIsFire())) {
                     mGiftSendList.setVisibility(View.VISIBLE);
                 } else {
@@ -893,7 +895,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                         mGiftSentBtn.setEnabled(false);
                         mGiftContinue.setVisibility(View.VISIBLE);
 
-                        if ("0".equals(selectedGift.getIsFire())) {
+//                        if ("0".equals(selectedGift.getIsFire())) {
 
                             mGiftContinue.setVisibility(View.GONE);
                             //计算最大合法Combo总数
@@ -929,67 +931,67 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                             llOperationBar.setVisibility(View.VISIBLE);
                             mGiftLay.setVisibility(View.VISIBLE);
                             recyclerPublicChat.setVisibility(View.VISIBLE);
-                        } else {
-                            if (1 != giftComboCount) mGiftContinue.setVisibility(View.GONE);
-                            mGiftSentBtn.setVisibility(View.GONE);
-                            mGiftSendList.setVisibility(View.GONE);
-                            //礼物连发
-                            new MrlCountDownTimer(3000, 100) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    if (mGiftContinue == null) {
-                                        this.cancel();
-                                        return;
-                                    }
-                                    mGiftContinue.setText(getString(R.string
-                                                    .layout_gift_continue_send_default,
-                                            millisUntilFinished / 100));
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    mGiftContinue.setVisibility(View.INVISIBLE);
-                                    //计算最大合法Combo总数
-                                    double balance = Double.parseDouble(loginInfo.getTotalBalance());
-                                    double maxCombo = balance / Double.parseDouble(selectedGift.getPrice());
-                                    int finalCombo = giftComboCount > maxCombo ? (int) maxCombo :
-                                            giftComboCount;
-
-                                    balance -= (finalCombo * Double.parseDouble(selectedGift.getPrice()));
-                                    //直接扣除余额
-                                    loginInfo.setTotalBalance(String.valueOf(balance));
-                                    //更新到永存
-                                    DataManager.getInstance().saveLoginInfo(loginInfo);
-                                    //更新显示
-                                    mChargeTv.setText(DataManager.getInstance().getLoginInfo().getTotalBalance());
-                                    if (finalCombo == 0) {
-                                        finalCombo = 1;
-                                    }
-                                    wsService.sendRequest(WsObjectPool.newSendGiftRequest(getContext(),
-                                            mLiveId, mAnchorId, loginInfo.getUserId(),
-                                            selectedGift.getPrice(), selectedGift.getId(),
-                                            finalCombo, loginInfo.getNickname(), loginInfo.getAvatar(),
-                                            loginInfo.getLevel(), selectedGift.getName(),
-                                            selectedGift.getImgSrc(), selectedGift.getIsFire()));
-
-                                    RoomManager.getInstance().getRoomInstance()
-                                            .sendGift(finalCombo,
-                                                    String.valueOf(selectedGift.getName()),
-                                                    selectedGift.getPrice(),
-                                                    String.valueOf(balance),
-                                                    loginInfo.getServerId(),
-                                                    loginInfo.getUserId(),
-                                                    mAnchorId);
-
-                                    mGiftSentBtn.setEnabled(true);
-                                    mGiftSentBtn.setVisibility(View.VISIBLE);
-                                    mGiftSendList.setVisibility(View.VISIBLE);
-                                    //连发完成置位1
-                                    giftComboCount = 1;
-                                    mGiftSendList.setText(String.valueOf(giftComboCount));
-                                }
-                            }.start();
-                        }
+//                        } else {
+//                            if (1 != giftComboCount) mGiftContinue.setVisibility(View.GONE);
+//                            mGiftSentBtn.setVisibility(View.GONE);
+//                            mGiftSendList.setVisibility(View.GONE);
+//                            //礼物连发
+//                            new MrlCountDownTimer(3000, 100) {
+//                                @Override
+//                                public void onTick(long millisUntilFinished) {
+//                                    if (mGiftContinue == null) {
+//                                        this.cancel();
+//                                        return;
+//                                    }
+//                                    mGiftContinue.setText(getString(R.string
+//                                                    .layout_gift_continue_send_default,
+//                                            millisUntilFinished / 100));
+//                                }
+//
+//                                @Override
+//                                public void onFinish() {
+//                                    mGiftContinue.setVisibility(View.INVISIBLE);
+//                                    //计算最大合法Combo总数
+//                                    double balance = Double.parseDouble(loginInfo.getTotalBalance());
+//                                    double maxCombo = balance / Double.parseDouble(selectedGift.getPrice());
+//                                    int finalCombo = giftComboCount > maxCombo ? (int) maxCombo :
+//                                            giftComboCount;
+//
+//                                    balance -= (finalCombo * Double.parseDouble(selectedGift.getPrice()));
+//                                    //直接扣除余额
+//                                    loginInfo.setTotalBalance(String.valueOf(balance));
+//                                    //更新到永存
+//                                    DataManager.getInstance().saveLoginInfo(loginInfo);
+//                                    //更新显示
+//                                    mChargeTv.setText(DataManager.getInstance().getLoginInfo().getTotalBalance());
+//                                    if (finalCombo == 0) {
+//                                        finalCombo = 1;
+//                                    }
+//                                    wsService.sendRequest(WsObjectPool.newSendGiftRequest(getContext(),
+//                                            mLiveId, mAnchorId, loginInfo.getUserId(),
+//                                            selectedGift.getPrice(), selectedGift.getId(),
+//                                            finalCombo, loginInfo.getNickname(), loginInfo.getAvatar(),
+//                                            loginInfo.getLevel(), selectedGift.getName(),
+//                                            selectedGift.getImgSrc(), selectedGift.getIsFire()));
+//
+//                                    RoomManager.getInstance().getRoomInstance()
+//                                            .sendGift(finalCombo,
+//                                                    String.valueOf(selectedGift.getName()),
+//                                                    selectedGift.getPrice(),
+//                                                    String.valueOf(balance),
+//                                                    loginInfo.getServerId(),
+//                                                    loginInfo.getUserId(),
+//                                                    mAnchorId);
+//
+//                                    mGiftSentBtn.setEnabled(true);
+//                                    mGiftSentBtn.setVisibility(View.VISIBLE);
+//                                    mGiftSendList.setVisibility(View.VISIBLE);
+//                                    //连发完成置位1
+//                                    giftComboCount = 1;
+//                                    mGiftSendList.setText(String.valueOf(giftComboCount));
+//                                }
+//                            }.start();
+//                        }
 
                     }
                 });
@@ -1027,7 +1029,9 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                     @Override
                     public Boolean call(Gift gift) {
                         //没有选中任何礼物或者不能连发的则返回false
-                        if (gift == null || "0".equals(gift.getIsFire())) {
+                        //if (gift == null || "0".equals(gift.getIsFire())) {
+                        //统一都可以连发
+                        if (gift == null) {
                             return Boolean.FALSE;
                         }
                         return Boolean.TRUE;
