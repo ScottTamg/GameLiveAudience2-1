@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义控件的名称 -->
+    <declare-styleable name="StrokeTextView">
+        <!-- 自定义的属性名称 和对应的单位 -->
+        <attr name="outerColor" format="color|reference" />
+        <attr name="innerColor" format="color|reference" />
+    </declare-styleable>
+    <declare-styleable name="emotionTextView">
+        <attr name="emotionRegexPattern" format="string"/>
+        <attr name="emotionText" format="string"/>
+    </declare-styleable>
+    <declare-styleable name = "face_style">
+        <attr name = "face_row" format = "integer" />
+        <attr name = "face_column" format = "integer" />
+        <attr name="face_point_margin" format="dimension"/>
+        <attr name="face_point_src_select" format="reference"/>
+        <attr name="face_point_src_normol" format="reference"/>
+        <attr name="face_item_padding" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="CircleProgress">
+        <attr name="color1" format="reference|color"/>
+        <attr name="color2" format="reference|color"/>
+        <attr name="color3" format="reference|color"/>
+    </declare-styleable>
+
+    <declare-styleable name="NumberPicker">
+        <attr name="normalTextColor" format="color" />
+        <attr name="normalTextSize" format="dimension" />
+        <attr name="selecredTextColor" format="color" />
+        <attr name="selecredTextSize" format="dimension" />
+        <attr name="unitHight" format="dimension" />
+        <attr name="itemNumber" format="integer"/>
+        <attr name="lineColor" format="color" />
+        <attr name="maskHight" format="dimension"/>
+        <attr name="noEmpty" format="boolean"/>
+        <attr name="isEnable" format="boolean"/>
+    </declare-styleable>
+
+    <!--IM-->
+    <declare-styleable name="HoloCircularProgressBar">
+        <attr name="stroke_width" format="dimension" />
+        <attr name="progress" format="float" />
+        <attr name="marker_progress" format="float" />
+        <attr name="progress_color" format="color" />
+        <attr name="progress_background_color" format="color" />
+        <attr name="thumb_visible" format="boolean" />
+        <attr name="marker_visible" format="boolean" />
+        <attr name="android:gravity" />
+    </declare-styleable>
+
+    <attr name="circularProgressBarStyle" format="reference" />
+
+    <attr name="siArrowPosition">
+        <enum name="left" value="0" />
+        <enum name="right" value="1" />
+    </attr>
+    <attr name="siBorderType">
+        <enum name="stroke" value="0" />
+        <enum name="fill" value="1" />
+    </attr>
+    <attr name="siStrokeCap">
+        <enum name="butt" value="0" />
+        <enum name="round" value="1" />
+        <enum name="square" value="2" />
+    </attr>
+    <attr name="siStrokeJoin">
+        <enum name="bevel" value="0" />
+        <enum name="miter" value="1" />
+        <enum name="round" value="2" />
+    </attr>
+
+    <declare-styleable name="drop_down_list_attr">
+        <attr name="isDropDownStyle" format="boolean" />
+        <attr name="isOnBottomStyle" format="boolean" />
+        <attr name="isAutoLoadOnBottom" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SettingItemView">
+        <attr name="ischeck_enable" format="boolean" />
+        <attr name="text_title" format="string|reference" />
+        <attr name="item_background" format="integer|reference" />
+    </declare-styleable>
+
+    <!--圆角头像-->
+    <declare-styleable name="SelectableRoundedImageView">
+        <attr name="sriv_left_top_corner_radius" format="dimension" />
+        <attr name="sriv_right_top_corner_radius" format="dimension" />
+        <attr name="sriv_left_bottom_corner_radius" format="dimension" />
+        <attr name="sriv_right_bottom_corner_radius" format="dimension" />
+        <attr name="sriv_border_width" format="dimension" />
+        <attr name="sriv_border_color" format="color" />
+        <attr name="sriv_oval" format="boolean" />
+        <attr name="android:scaleType" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="GenericDraweeHierarchy">
+
+        <!-- NOTE: If adding a new attr here, also add to SimpleDraweeView below -->
+        <eat-comment />
+
+        <!-- Fade duration in milliseconds. -->
+        <attr name="fadeDuration" format="integer"/>
+
+        <!-- Aspect ratio (width / height) of the view, not necessarily of the images. -->
+        <attr name="viewAspectRatio" format="float"/>
+
+        <!-- Image branches -
+        Scale-type values must match those in GenericDraweeHierarchyInflater.getScaleTypeFromXml.
+        (GenericDraweeHierarchyInflater.java).
+        For drawables that should not be scaled, such as those with the android:tileMode
+        attribute set, use the value 'none'. -->
+
+        <!-- A drawable or color to be be used as a placeholder. -->
+        <attr name="placeholderImage" format="reference"/>
+        <!-- Scale type of the placeholder image. Ignored if placeholderImage is not specified. -->
+        <attr name="placeholderImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+
+        <!-- A drawable to be be used as a retry image. -->
+        <attr name="retryImage" format="reference"/>
+        <!-- Scale type of the retry image. Ignored if retryImage is not specified. -->
+        <attr name="retryImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+
+        <!-- A drawable to be be used as a failure image. -->
+        <attr name="failureImage" format="reference"/>
+        <!-- Scale type of the failure image. Ignored if failureImage is not specified. -->
+        <attr name="failureImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+
+        <!-- A drawable to be be used as a progress bar. -->
+        <attr name="progressBarImage" format="reference"/>
+        <!-- Scale type of the progress bar. Ignored if progressBarImage is not specified. -->
+        <attr name="progressBarImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+        <!-- Progress bar Auto Rotate interval in milliseconds -->
+        <attr name="progressBarAutoRotateInterval" format="integer"/>
+
+        <!-- Scale type of the actual image. -->
+        <attr name="actualImageScaleType">
+            <enum name="none" value="-1" />
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+            <enum name="focusCrop" value="7" />
+            <enum name="fitBottomStart" value="8" />
+        </attr>
+
+        <!-- A drawable or color to be used as a background. -->
+        <attr name="backgroundImage" format="reference"/>
+
+        <!-- A drawable or color to be used as an overlay. -->
+        <attr name="overlayImage" format="reference"/>
+
+        <!-- A drawable or color to be used as a pressed-state-overlay -->
+        <attr name="pressedStateOverlayImage" format="reference"/>
+
+        <!-- Rounding params -
+        Declares attributes for rounding shape, mode and border. -->
+
+        <!-- Round as circle. -->
+        <attr name="roundAsCircle" format="boolean"/>
+        <!-- Rounded corner radius. Ignored if roundAsCircle is used. -->
+        <attr name="roundedCornerRadius" format="dimension"/>
+        <!-- Round the top-left corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopLeft" format="boolean"/>
+        <!-- Round the top-right corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopRight" format="boolean"/>
+        <!-- Round the bottom-right corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomRight" format="boolean"/>
+        <!-- Round the bottom-left corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomLeft" format="boolean"/>
+        <!-- Round the top-start edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopStart" format="boolean"/>
+        <!-- Round the top-end edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopEnd" format="boolean"/>
+        <!-- Round the bottom-start edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomStart" format="boolean"/>
+        <!-- Round the bottom-end edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomEnd" format="boolean"/>
+        <!-- Round by overlying color. -->
+        <attr name="roundWithOverlayColor" format="color"/>
+        <!-- Rounding border width-->
+        <attr name="roundingBorderWidth" format="dimension"/>
+        <!-- Rounding border color -->
+        <attr name="roundingBorderColor" format="color"/>
+        <!-- Rounding border padding -->
+        <attr name="roundingBorderPadding" format="dimension" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SimpleDraweeView" parent="GenericDraweeHierarchy">
+
+        <!-- An image uri . -->
+        <attr name="actualImageUri" format="string"/>
+        <!-- An image reference -->
+        <attr name="actualImageResource" format="reference"/>
+
+        <!-- Attributes inherited from GenericDraweeHierarchy -->
+        <eat-comment />
+
+        <!-- Fade duration in milliseconds. -->
+        <attr name="fadeDuration" />
+
+        <!-- Aspect ratio (width / height) of the view, not necessarily of the images. -->
+        <attr name="viewAspectRatio" />
+
+        <!-- Image branches -
+        Scale-type values must match those in GenericDraweeHierarchyInflater.getScaleTypeFromXml.
+        (GenericDraweeHierarchyInflater.java).
+        For drawables that should not be scaled, such as those with the android:tileMode
+        attribute set, use the value 'none'. -->
+
+        <!-- A drawable or color to be be used as a placeholder. -->
+        <attr name="placeholderImage" />
+        <!-- Scale type of the placeholder image. Ignored if placeholderImage is not specified. -->
+        <attr name="placeholderImageScaleType" />
+
+        <!-- A drawable to be be used as a retry image. -->
+        <attr name="retryImage" />
+        <!-- Scale type of the retry image. Ignored if retryImage is not specified. -->
+        <attr name="retryImageScaleType" />
+
+        <!-- A drawable to be be used as a failure image. -->
+        <attr name="failureImage" />
+        <!-- Scale type of the failure image. Ignored if failureImage is not specified. -->
+        <attr name="failureImageScaleType" />
+
+
+        <!-- A drawable to be be used as a progress bar. -->
+        <attr name="progressBarImage" />
+        <!-- Scale type of the progress bar. Ignored if progressBarImage is not specified. -->
+        <attr name="progressBarImageScaleType" />
+
+        <!-- Progress bar Auto Rotate interval in milliseconds -->
+        <attr name="progressBarAutoRotateInterval" />
+
+        <!-- Scale type of the actual image. -->
+        <attr name="actualImageScaleType" />
+
+        <!-- A drawable or color to be used as a background. -->
+        <attr name="backgroundImage" />
+
+        <!-- A drawable or color to be used as an overlay. -->
+        <attr name="overlayImage" />
+
+        <!-- A drawable or color to be used as a pressed-state-overlay -->
+        <attr name="pressedStateOverlayImage" />
+
+        <!-- Rounding params -
+        Declares attributes for rounding shape, mode and border. -->
+
+        <!-- Round as circle. -->
+        <attr name="roundAsCircle" />
+        <!-- Rounded corner radius. Ignored if roundAsCircle is used. -->
+        <attr name="roundedCornerRadius" />
+        <!-- Round the top-left corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopLeft" />
+        <!-- Round the top-right corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopRight" />
+        <!-- Round the bottom-right corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomRight" />
+        <!-- Round the bottom-left corner. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomLeft" />
+        <!-- Round the top-start edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopStart" />
+        <!-- Round the top-end edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundTopEnd" />
+        <!-- Round the bottom-start edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomStart" />
+        <!-- Round the bottom-end edge. Ignored if roundAsCircle is used. -->
+        <attr name="roundBottomEnd" />
+        <!-- Round by overlying color. -->
+        <attr name="roundWithOverlayColor" />
+        <!-- Rounding border width-->
+        <attr name="roundingBorderWidth" />
+        <!-- Rounding border color -->
+        <attr name="roundingBorderColor" />
+        <!-- Rounding border padding -->
+        <attr name="roundingBorderPadding" />
+
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <!-- {@deprecated Use civ_circlebackground_color instead.} -->
+        <attr name="civ_fill_color" format="color" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+</resources>

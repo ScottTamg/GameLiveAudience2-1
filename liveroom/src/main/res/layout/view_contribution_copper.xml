@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_group"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/jin2"
+            android:scaleType="centerInside"
+            android:tint="@color/color_DECFAA" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/copper_sdv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            fresco:actualImageScaleType="centerInside"
+            fresco:backgroundImage="@color/color_DECFAA"
+            fresco:failureImage="@drawable/jin2"
+            fresco:failureImageScaleType="centerInside"
+            fresco:placeholderImage="@drawable/jin2"
+            fresco:placeholderImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderColor="@color/color_DECFAA"
+            fresco:roundingBorderWidth="@dimen/dp4" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="62dp"
+        android:layout_height="@dimen/dp55"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/jin1"
+        android:tint="@color/color_DECFAA" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp55">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/jin3"
+            android:tint="@color/color_DECFAA" />
+
+        <TextView
+            android:id="@+id/copper_tv_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/default_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_minimum_size" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
