@@ -3,26 +3,32 @@ package com.ttt.liveroom.room.play;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ttt.liveroom.R;
 import com.ttt.liveroom.base.BaseObserver;
 import com.ttt.liveroom.base.BaseUiInterface;
 import com.ttt.liveroom.base.recycler.SimpleRecyclerHolder;
 import com.ttt.liveroom.bean.BaseResponse;
+import com.ttt.liveroom.bean.room.LiveListBackfroundImg;
 import com.ttt.liveroom.bean.room.NewestAuthorBean;
 import com.ttt.liveroom.net.NetManager;
 import com.ttt.liveroom.room.RoomApi;
+import com.ttt.liveroom.util.GlideCircleTransform;
 
 import java.util.List;
 
@@ -41,7 +47,7 @@ public class LiveListDialog extends Dialog implements BaseUiInterface {
     private RecyclerView recyclerView;
     private Activity mContext;
     private String mUserId;
-
+    private ImageView img_bg;
     public LiveListDialog(@NonNull Activity context, String userId) {
         super(context, R.style.DialogStyle);
         mContext = context;
@@ -56,6 +62,7 @@ public class LiveListDialog extends Dialog implements BaseUiInterface {
     }
 
     private void findView() {
+        img_bg = findViewById(R.id.img_bg);
         recyclerView = findViewById(R.id.rv_livelist);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
 
@@ -69,6 +76,27 @@ public class LiveListDialog extends Dialog implements BaseUiInterface {
                         if (response.getCode().equals("0")){
                             HotAnchorAdapter anchorAdapter = new HotAnchorAdapter(response.getData().getList());
                             recyclerView.setAdapter(anchorAdapter);
+                        }else{
+                            Toast.makeText(getContext(),response.getMsg(),Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+        NetManager.getInstance().create(RoomApi.class)
+                .getLiveListBackground()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<BaseResponse<LiveListBackfroundImg>>(this) {
+                    @Override
+                    public void onSuccess(BaseResponse<LiveListBackfroundImg> response) {
+                        if (response.getCode().equals("0")){
+                            Log.e("###",response.getData().getImgSrc());
+                            Glide.with(mContext)
+                                    .load(response.getData().getImgSrc())
+                                    //.placeholder(R.drawable.ic_default_head)
+                                    //.transform(new GlideCircleTransform(mContext))
+                                    //.error(R.drawable.ic_default_head)
+                                    .into(img_bg);
                         }else{
                             Toast.makeText(getContext(),response.getMsg(),Toast.LENGTH_LONG).show();
                         }

@@ -5,6 +5,7 @@ import com.ttt.liveroom.bean.GetFriendBean;
 import com.ttt.liveroom.bean.UserInfo;
 import com.ttt.liveroom.bean.gift.Gift;
 import com.ttt.liveroom.bean.room.ComplainOptionBean;
+import com.ttt.liveroom.bean.room.LiveListBackfroundImg;
 import com.ttt.liveroom.bean.room.LiveRoomEndInfo;
 import com.ttt.liveroom.bean.room.NewestAuthorBean;
 import com.ttt.liveroom.bean.room.RoomAdminInfo;
@@ -109,4 +110,11 @@ public interface RoomApi {
      */
     @GET("/live/latest")
     Observable<BaseResponse<NewestAuthorBean>> getNewestByAuthor(@Query("page") String page, @Query("size") String size, @Query("userId") String userId);
+
+    /**
+     * 获取展示直播列表的背景图片
+     * @return
+     */
+    @GET("/live/show-background")
+    Observable<BaseResponse<LiveListBackfroundImg>> getLiveListBackground();
 }
