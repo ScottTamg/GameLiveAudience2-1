@@ -24,25 +24,38 @@ public class UserInfoPopup extends PopupWindow implements View.OnTouchListener,
     private static final String TAG = "UserInfoPopup";
 
     private UserInfo mUserInfo;
-    private TextView mTvComplaint;
-    private TextView mTvCancel;
-    private TextView mTvName;
-    private TextView mTvUserId;
-    private TextView mTvAddress;
-    private TextView mTvSignature;
-    private TextView mTvStatNum;
-    private TextView mTvStatNum2;
-    private TextView mTvStatNum3;
-    private TextView mTvStatNum4;
-    private TextView mTvStat;
-    private TextView mTvChat;
-    private SimpleDraweeView mPhoto;
-    private LinearLayout mTabBottom;
+
 
     private Context mContext;
     private View mRootView;
-    private boolean mIsAdmin;
-    private UserInfoListener mListener;
+    /**
+     * 取消
+     */
+    private TextView btn_cancel;
+    /**
+     * 名字
+     */
+    private TextView info_name;
+    /**
+     * 签名
+     */
+    private TextView info_signature;
+    /**
+     * 爱好
+     */
+    private TextView info_hobby;
+    /**
+     * 特长
+     */
+    private TextView info_speciality;
+    /**
+     * 身高
+     */
+    private TextView info_stature;
+    /**
+     * 头像
+     */
+    private SimpleDraweeView info_photo;
 
     public void setUserInfo(UserInfo userInfo) {
         this.mUserInfo = userInfo;
@@ -53,11 +66,9 @@ public class UserInfoPopup extends PopupWindow implements View.OnTouchListener,
         return mUserInfo;
     }
 
-    public UserInfoPopup(Context context, UserInfo userInfo, boolean isAdmin, UserInfoListener listener) {
+    public UserInfoPopup(Context context, UserInfo userInfo) {
         this.mContext = context;
         this.mUserInfo = userInfo;
-        this.mIsAdmin = isAdmin;
-        this.mListener = listener;
         initViews();
     }
 
@@ -72,83 +83,53 @@ public class UserInfoPopup extends PopupWindow implements View.OnTouchListener,
         //设置动画效果
         this.setAnimationStyle(R.style.MyPopupWindow_anim_style);
         setContentView(mRootView);
-
-        mTvComplaint = (TextView) mRootView.findViewById(R.id.dialog_user_info_complaint);
-        mTvCancel = (TextView) mRootView.findViewById(R.id.dialog_user_info_cancel);
-        mTvName = (TextView) mRootView.findViewById(R.id.dialog_user_info_name);
-        mTvUserId = (TextView) mRootView.findViewById(R.id.dialog_user_info_userid);
-        mTvAddress = (TextView) mRootView.findViewById(R.id.dialog_user_info_address);
-        mTvSignature = (TextView) mRootView.findViewById(R.id.dialog_user_info_signature);
-        mTvStatNum = (TextView) mRootView.findViewById(R.id.dialog_user_info_star_num);
-        mTvStatNum2 = (TextView) mRootView.findViewById(R.id.dialog_user_info_star_num2);
-        mTvStatNum3 = (TextView) mRootView.findViewById(R.id.dialog_user_info_star_num3);
-        mTvStatNum4 = (TextView) mRootView.findViewById(R.id.dialog_user_info_star_num4);
-        mTvStat = (TextView) mRootView.findViewById(R.id.dialog_user_info_star);
-        mTvChat = (TextView) mRootView.findViewById(R.id.dialog_user_info_prv_chat);
-        mPhoto = (SimpleDraweeView) mRootView.findViewById(R.id.dialog_user_info_photo);
-        mTabBottom = (LinearLayout) mRootView.findViewById(R.id.dialog_user_tab_bottom);
-
-        mTvComplaint.setOnClickListener(this);
-        mTvCancel.setOnClickListener(this);
-        mTvStat.setOnClickListener(this);
-        mTvChat.setOnClickListener(this);
-        mPhoto.setOnClickListener(this);
-
+        //获取相应的控件
+        btn_cancel = mRootView.findViewById(R.id.dialog_user_info_cancel);
+        info_name = mRootView.findViewById(R.id.dialog_user_info_name);
+        info_signature = mRootView.findViewById(R.id.dialog_user_info_signature);
+        info_hobby = mRootView.findViewById(R.id.dialog_user_info_hobbydetai);
+        info_speciality = mRootView.findViewById(R.id.dialog_user_info_specialitydetail);
+        info_stature = mRootView.findViewById(R.id.dialog_user_info_staturedetail);
+        info_photo = mRootView.findViewById(R.id.dialog_user_info_photo);
+        btn_cancel.setOnClickListener(this);
         initData();
     }
 
-    public void showTabBottom(boolean isShow) {
-        mTabBottom.setVisibility(isShow ? View.VISIBLE : View.GONE);
-    }
-
     private void initData() {
-        mTvComplaint.setText(mContext.getString(mIsAdmin ? R.string.complaint : R.string.jubao));
-        mTvName.setText(mUserInfo.getNickName());
-        mTvUserId.setText("房间号：" + mUserInfo.getRoomId());
-        mTvAddress.setText(mUserInfo.getCity());
-        mTvSignature.setText(TextUtils.isEmpty(mUserInfo.getDescription()) ?
-                mContext.getResources().getString(R.string.this_guy_is_too_lazy_what_did_not_leave)
-                : mUserInfo.getDescription());
-        mTvStat.setText(mUserInfo.getIsAttention() == 0 ?
-                mContext.getString(R.string.user_dialog_star)
-                : mContext.getString(R.string.is_star));
-        mTvStatNum.setText(mUserInfo.getExpenditure());
-        mTvStatNum2.setText(mUserInfo.getIncome());
-        mTvStatNum3.setText(UiUtils.NumTransform(Integer.parseInt(mUserInfo.getFollowees_cnt())));
-        mTvStatNum4.setText(UiUtils.NumTransform(Integer.parseInt(mUserInfo.getFollowers_cnt())));
-        mPhoto.setImageURI(Uri.parse(mUserInfo.getAvatar()));
+        //设置头像
+        info_photo.setImageURI(Uri.parse(mUserInfo.getAvatar()));
+        //设置爱好
+        info_hobby.setText(mUserInfo.getHobby());
+        //设置特长
+        info_speciality.setText(mUserInfo.getSpeciality());
+        //设置身高
+        info_stature.setText(mUserInfo.getHeight());
+        //设置签名.
+        if (!TextUtils.isEmpty((mUserInfo.getDescription().trim()))){
+            info_signature.setText(mUserInfo.getDescription());
+        }
+
+        //名称
+        info_name.setText(mUserInfo.getUserName());
     }
 
-    public void setStatUser(boolean stat) {
-        if (stat) {
-            mTvStat.setText(mContext.getString(R.string.user_dialog_star));
-            mUserInfo.setIsAttention(0);
-            Log.e("###",mUserInfo.getIsAttention()+"");
-        } else {
-            mTvStat.setText(mContext.getString(R.string.is_star));
-            mUserInfo.setIsAttention(1);
-            Log.e("###",mUserInfo.getIsAttention()+"");
-        }
-    }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.dialog_user_info_cancel) {
             dismiss();
-        } else if (i == R.id.dialog_user_info_complaint) {
-            mListener.onComplaint(mUserInfo);
-            dismiss();
-        } else if (i == R.id.dialog_user_info_star) {
-            mListener.onStar(mUserInfo, mUserInfo.getIsAttention() == 1);
-        } else if (i == R.id.dialog_user_info_prv_chat) {
-            mListener.onPrvChat(mUserInfo);
-            dismiss();
-        } else if (i == R.id.dialog_user_info_photo) {
-            mListener.onUserPhoto(mUserInfo);
-        } else {
-
         }
+        //else if (i == R.id.dialog_user_info_star) {
+//            mListener.onStar(mUserInfo, mUserInfo.getIsAttention() == 1);
+//        } else if (i == R.id.dialog_user_info_prv_chat) {
+//            mListener.onPrvChat(mUserInfo);
+//            dismiss();
+//        } else if (i == R.id.dialog_user_info_photo) {
+//            mListener.onUserPhoto(mUserInfo);
+//        } else {
+//
+//        }
     }
 
     //点击外部popup消失
@@ -172,15 +153,5 @@ public class UserInfoPopup extends PopupWindow implements View.OnTouchListener,
             return true;
         }
         return false;
-    }
-
-    public interface UserInfoListener {
-        void onComplaint(UserInfo userInfo);
-
-        void onStar(UserInfo userInfo, boolean stat);
-
-        void onPrvChat(UserInfo userInfo);
-
-        void onUserPhoto(UserInfo userInfo);
     }
 }

@@ -42,6 +42,15 @@ public class PublicChatAdapter extends SimpleRecyclerAdapter<RoomPublicMsg, Publ
         notifyDataSetChanged();
     }
 
+
+    public void appendData(@NonNull RoomPublicMsg data,boolean isScrollLast) {
+        if (getDataList().size() > 1000) {
+            getDataList().remove(0);
+        }
+
+        getDataList().add(data);
+        notifyItemInserted(getDataList().size()-1);
+    }
     @Override
     protected int getItemLayoutId(int viewType) {
         return R.layout.item_room_public_chat;

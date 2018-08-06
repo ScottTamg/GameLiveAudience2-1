@@ -26,31 +26,28 @@
 
         <ImageView
             android:id="@+id/iv_m_close"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp5"
             android:layout_marginTop="@dimen/dp10"
-            android:background="@drawable/selector_close" />
+            android:background="@drawable/selector_close"/>
 
 
         <ImageView
             android:id="@+id/iv_m_big"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/iv_m_close"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_toRightOf="@+id/iv_m_close"
+            android:layout_marginLeft="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/selector_m_big" />
 
         <ImageView
             android:id="@+id/iv_m_small"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/iv_m_big"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_toRightOf="@+id/iv_m_big"
+            android:layout_marginLeft="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/m_suoxiao_dianji" />
     </RelativeLayout>

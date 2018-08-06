@@ -34,6 +34,7 @@
     <string name="pull_black">拉黑</string>
     <string name="setting_control">设置场控</string>
     <string name="userinfo_dialog_fans">粉丝</string>
+    <string name="userinfo_dialog_stature">身高</string>
     <string name="userinfo_dialog_poll">秀币</string>
     <string name="user_dialog_star">+关注</string>
     <string name="is_star">已关注</string>
@@ -103,6 +104,9 @@
     <string name="default_text">%1$s</string>
     <string name="contribution">贡献</string>
     <string name="contribution_empty">暂无榜单</string>
-    <string name="t_coin">草莓币</string>
+    <string name="t_coin">彩钻</string>
     <string name="follow_sucess">关注成功</string>
+    <string name="userinfo_height">身高</string>
+    <string name="userinfo_hobby">爱好</string>
+    <string name="userinfo_speciality">特长</string>
 </resources>

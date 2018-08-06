@@ -449,9 +449,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
      */
     @Override
     public void unStarUser(String userIdFollow) {
-        if (mUserInfoPopup != null && mUserInfoPopup.isShowing()) {
-            mUserInfoPopup.setStatUser(true);
-        }
+
     }
     /**
      * 展示发送礼物列表的popu
@@ -1057,7 +1055,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
     @Override
     public void showUserInfo(UserInfo userInfo, boolean isPopup) {
         if (isPopup) {
-            showUserInfoPopup(userInfo, false);
+            showUserInfoPopup(userInfo, true);
         } else {
             try {
                 // 请求成功
@@ -1425,7 +1423,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
 //        }
 //        statAnchor = false;
         if (mUserInfoPopup != null && mUserInfoPopup.isShowing()) {
-            mUserInfoPopup.setStatUser(false);
+            //mUserInfoPopup.setStatUser(false);
         }
 
     }

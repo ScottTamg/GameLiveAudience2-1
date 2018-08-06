@@ -328,7 +328,7 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
 
         heartColorArray = getResources().getIntArray(R.array.room_heart_colors);
         llChatBar = (LinearLayout) view.findViewById(R.id.room_ll_chat_bar);
-        mPrvChat = (TextView) view.findViewById(R.id.dialog_user_info_prv_chat);
+//        mPrvChat = (TextView) view.findViewById(R.id.dialog_user_info_prv_chat);
         llOperationBar = $(view, R.id.room_ll_operation_bar);
         mHeartAnim = $(view, R.id.room_heart_view);
         llHeader = $(view, R.id.room_header);
@@ -1035,31 +1035,7 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
         }
 
         if (mUserInfoPopup == null) {
-            UserInfoPopup.UserInfoListener listener = new UserInfoPopup.UserInfoListener() {
-                @Override
-                public void onComplaint(UserInfo userInfo) {
-                    if (isAdmin) {
-                        showAdminPopuo(userInfo);
-                    } else {
-                        getComplainOptions(userInfo.getId());
-                    }
-                }
-
-                @Override
-                public void onStar(UserInfo userInfo, boolean stat) {
-                    toFollow(userInfo, stat);
-                }
-
-                @Override
-                public void onPrvChat(UserInfo userInfo) {
-                   // initConversationIM(userInfo.getId(), userInfo.getNickName());
-                }
-
-                @Override
-                public void onUserPhoto(UserInfo userInfo) {
-                }
-            };
-            mUserInfoPopup = new UserInfoPopup(getContext(), info, isAdmin, listener);
+            mUserInfoPopup = new UserInfoPopup(getContext(), info);
         } else {
             mUserInfoPopup.setUserInfo(info);
         }

@@ -199,7 +199,7 @@ public class RoomLiveHelp {
                 localSurfaceView), mContext.getRequestedOrientation());
         rootView.addView(localSurfaceView, 0);
         mTTTEngine.startPreview();
-        mTTTEngine.openFaceBeavty(true);
+        mTTTEngine.openFaceBeauty(true);
     }
 
     //初始化engine并进入直播 liveType:直播类型 role：进入的角色 roomId:直播的房间id, userId:进入房间的userid

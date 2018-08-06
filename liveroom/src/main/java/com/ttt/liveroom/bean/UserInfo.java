@@ -25,6 +25,9 @@ public class UserInfo implements Parcelable {
      * followees_cnt :
      * isAttention :
      * isLive :
+     * height  身高
+     * hobby   爱好
+     * speciality  特长
      */
 
     private String userId;
@@ -50,6 +53,9 @@ public class UserInfo implements Parcelable {
     private String income ;
     private String expenditure ;
     private int isBlacklist;
+    private String height ;
+    private String hobby ;
+    private String speciality ;
 
     public UserInfo() {
     }
@@ -307,14 +313,34 @@ public class UserInfo implements Parcelable {
         dest.writeInt(isBlacklist);
     }
 
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "userId='" + userId + '\'' +
-                "roomId='" + roomId + '\'' +
-                "isBlacklist='" + isBlacklist + '\'' +
-                "expenditure='" + expenditure + '\'' +
-                "income='" + income + '\'' +
                 ", userName='" + userName + '\'' +
                 ", realName='" + realName + '\'' +
                 ", idCard='" + idCard + '\'' +
@@ -324,11 +350,22 @@ public class UserInfo implements Parcelable {
                 ", description='" + description + '\'' +
                 ", isValid='" + isValid + '\'' +
                 ", balance='" + balance + '\'' +
+                ", birth='" + birth + '\'' +
+                ", sex='" + sex + '\'' +
+                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
                 ", level='" + level + '\'' +
                 ", followers_cnt='" + followers_cnt + '\'' +
                 ", followees_cnt='" + followees_cnt + '\'' +
-                ", isAttention='" + isAttention + '\'' +
+                ", isAttention=" + isAttention +
+                ", isLive=" + isLive +
+                ", roomId=" + roomId +
+                ", income='" + income + '\'' +
+                ", expenditure='" + expenditure + '\'' +
+                ", isBlacklist=" + isBlacklist +
+                ", height='" + height + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", speciality='" + speciality + '\'' +
                 '}';
     }
-
 }
