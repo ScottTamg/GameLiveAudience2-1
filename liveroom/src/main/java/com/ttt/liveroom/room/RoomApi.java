@@ -49,42 +49,42 @@ public interface RoomApi {
     @GET("/user/profile")
     Observable<BaseResponse<UserInfo>> getUserInfo(@Query("userId") String id, @Query("observerUserId") String caller_uid);
 
-    @GET("/OpenAPI/v1/Friend/getfriend")
-    Observable<BaseResponse<List<GetFriendBean>>> getFriendList();
-
-
-    @POST("/OpenAPI/v1/Room/getAdmin")
-    Observable<BaseResponse<List<RoomAdminInfo>>> getAdmin(@Query("uid") String uid);
-
-    @GET("/OpenAPI/v1/User/setHit")
-    Observable<BaseResponse<Object>> setHit(@Query("token") String token,
-                                            @Query("hituid") String title);
-
-    @GET("/OpenAPI/v1/User/removeHit")
-    Observable<BaseResponse<Object>> removeHit(@Query("token") String token,
-                                               @Query("hituid") String title);
-
-    //观看直播
-    @FormUrlEncoded
-    @POST("/OpenAPI/v1/anchor/watchlive")
-    Observable<BaseResponse<Object>> watchLive(@Field("token") String token, @Field("uid") String uid, @Field("roomid") String roomid);
-
-    //结束观看直播
-    @FormUrlEncoded
-    @POST("/OpenAPI/v1/anchor/stopwatchlive")
-    Observable<BaseResponse<Object>> stopWatchLive(@Field("token") String token, @Field("uid") String uid);
-
-
-    @FormUrlEncoded
-    @POST("/OpenAPI/v1/room/entryOfflineroom")
-    Observable<BaseResponse<LiveRoomEndInfo>> getLiveRoomInfo(@Field("roomnum") String roomId, @Field("id") String id, @Field("caller_uid") String caller_uid);
-
-    @FormUrlEncoded
-    @POST("/OpenAPI/v1/anchor/complaint")
-    Observable<BaseResponse<String>> complaint(@Field("uid") String uid, @Field("roomid") String roomid, @Field("remark") String remark);
-
-    @POST("/OpenAPI/v1/anchor/heartbeat")
-    Observable<BaseResponse<Object>> keepLiveStatus(@Query("token") String token);
+//    @GET("/OpenAPI/v1/Friend/getfriend")
+//    Observable<BaseResponse<List<GetFriendBean>>> getFriendList();
+//
+//
+//    @POST("/OpenAPI/v1/Room/getAdmin")
+//    Observable<BaseResponse<List<RoomAdminInfo>>> getAdmin(@Query("uid") String uid);
+//
+//    @GET("/OpenAPI/v1/User/setHit")
+//    Observable<BaseResponse<Object>> setHit(@Query("token") String token,
+//                                            @Query("hituid") String title);
+//
+//    @GET("/OpenAPI/v1/User/removeHit")
+//    Observable<BaseResponse<Object>> removeHit(@Query("token") String token,
+//                                               @Query("hituid") String title);
+//
+//    //观看直播
+//    @FormUrlEncoded
+//    @POST("/OpenAPI/v1/anchor/watchlive")
+//    Observable<BaseResponse<Object>> watchLive(@Field("token") String token, @Field("uid") String uid, @Field("roomid") String roomid);
+//
+//    //结束观看直播
+//    @FormUrlEncoded
+//    @POST("/OpenAPI/v1/anchor/stopwatchlive")
+//    Observable<BaseResponse<Object>> stopWatchLive(@Field("token") String token, @Field("uid") String uid);
+//
+//
+//    @FormUrlEncoded
+//    @POST("/OpenAPI/v1/room/entryOfflineroom")
+//    Observable<BaseResponse<LiveRoomEndInfo>> getLiveRoomInfo(@Field("roomnum") String roomId, @Field("id") String id, @Field("caller_uid") String caller_uid);
+//
+//    @FormUrlEncoded
+//    @POST("/OpenAPI/v1/anchor/complaint")
+//    Observable<BaseResponse<String>> complaint(@Field("uid") String uid, @Field("roomid") String roomid, @Field("remark") String remark);
+//
+//    @POST("/OpenAPI/v1/anchor/heartbeat")
+//    Observable<BaseResponse<Object>> keepLiveStatus(@Query("token") String token);
 
     /**
      * 举报

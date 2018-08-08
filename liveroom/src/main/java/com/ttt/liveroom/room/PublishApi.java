@@ -69,8 +69,8 @@ public interface PublishApi {
             @Field("userId") String userId,
             @Field("userIdFollow") String userIdFollow);
 
-    @POST("/OpenAPI/v1/Room/getAdmin")
-    Observable<BaseResponse<List<RoomAdminInfo>>> getAdmin(@Query("uid") String uid);
+//    @POST("/OpenAPI/v1/Room/getAdmin")
+//    Observable<BaseResponse<List<RoomAdminInfo>>> getAdmin(@Query("uid") String uid);
 
 
     @GET("/user/profile")

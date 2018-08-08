@@ -2,6 +2,7 @@ package com.ttt.liveroom.room.play;
 
 import android.app.Activity;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -83,7 +84,12 @@ public class SmallScreenHelp implements View.OnClickListener {
         mWindowManager = (WindowManager) mContext.getApplication().getSystemService(Activity.WINDOW_SERVICE);
         wmParams = new WindowManager.LayoutParams();
         // 更多type：https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#TYPE_PHONE
-        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        if (Build.VERSION.SDK_INT > 24) {
+            wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
+        //wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         wmParams.format = PixelFormat.RGBA_8888;
         // 更多falgs:https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_NOT_FOCUSABLE
         wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;

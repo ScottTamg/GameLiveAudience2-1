@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements RoomInterface {
         mLoginInfo = new LoginInfo();
         mLoginInfo.setAvatar("http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJwdDTU5w155tzbMqHj6JSy23FtzKHjSDl909OetCVZeknbsgYvHicKJsn1C63icmgOXlGEcNZAry6A/0");
         mLoginInfo.setNickname("用户10005");
-        mLoginInfo.setUserId("111111");
+        mLoginInfo.setUserId((int)((Math.random()*9+1)*100000)+"");
         mLoginInfo.setUserName("用户10005");
         mLoginInfo.setTotalBalance("100000000.0");
         mLoginInfo.setLevel("1");

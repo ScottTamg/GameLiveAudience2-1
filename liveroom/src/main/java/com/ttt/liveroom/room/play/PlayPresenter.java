@@ -141,61 +141,61 @@ public class PlayPresenter extends BasePresenter<PlayerUiInterface> {
         addSubscription(subscription);
     }
 
-    /**
-     * 小伙伴
-     */
-    public void loadFriendList() {
-        Subscription subscription = NetManager.getInstance().create(RoomApi.class).getFriendList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BaseResponse<List<GetFriendBean>>>(getUiInterface()) {
-                    @Override
-                    public void onSuccess(BaseResponse<List<GetFriendBean>> response) {
-                        getUiInterface().showFriendList(response.getData());
-                    }
-                });
-        addSubscription(subscription);
-    }
+//    /**
+//     * 小伙伴
+//     */
+//    public void loadFriendList() {
+//        Subscription subscription = NetManager.getInstance().create(RoomApi.class).getFriendList()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseObserver<BaseResponse<List<GetFriendBean>>>(getUiInterface()) {
+//                    @Override
+//                    public void onSuccess(BaseResponse<List<GetFriendBean>> response) {
+//                        getUiInterface().showFriendList(response.getData());
+//                    }
+//                });
+//        addSubscription(subscription);
+//    }
 
 
-    /**
-     * 观看直播
-     *
-     * @param token
-     * @param uid
-     * @param roomid
-     */
-    public void watchLive(String token, String uid, String roomid) {
-        Subscription subscription = NetManager.getInstance().create(RoomApi.class).watchLive(token, uid, roomid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BaseResponse<Object>>(getUiInterface()) {
-                    @Override
-                    public void onSuccess(BaseResponse<Object> response) {
-                        Log.e("PlayPresenter", response.toString());
-                    }
-                });
-        addSubscription(subscription);
-    }
+//    /**
+//     * 观看直播
+//     *
+//     * @param token
+//     * @param uid
+//     * @param roomid
+//     */
+//    public void watchLive(String token, String uid, String roomid) {
+//        Subscription subscription = NetManager.getInstance().create(RoomApi.class).watchLive(token, uid, roomid)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseObserver<BaseResponse<Object>>(getUiInterface()) {
+//                    @Override
+//                    public void onSuccess(BaseResponse<Object> response) {
+//                        Log.e("PlayPresenter", response.toString());
+//                    }
+//                });
+//        addSubscription(subscription);
+//    }
 
-    /**
-     * 结束观看直播
-     *
-     * @param token
-     * @param uid
-     */
-    public void stopWatchLive(String token, String uid) {
-        Subscription subscription = NetManager.getInstance().create(RoomApi.class).stopWatchLive(token, uid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BaseResponse<Object>>(getUiInterface()) {
-                    @Override
-                    public void onSuccess(BaseResponse<Object> response) {
-
-                    }
-                });
-        addSubscription(subscription);
-    }
+//    /**
+//     * 结束观看直播
+//     *
+//     * @param token
+//     * @param uid
+//     */
+//    public void stopWatchLive(String token, String uid) {
+//        Subscription subscription = NetManager.getInstance().create(RoomApi.class).stopWatchLive(token, uid)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseObserver<BaseResponse<Object>>(getUiInterface()) {
+//                    @Override
+//                    public void onSuccess(BaseResponse<Object> response) {
+//
+//                    }
+//                });
+//        addSubscription(subscription);
+//    }
 
     /**
      * 获取举报选项

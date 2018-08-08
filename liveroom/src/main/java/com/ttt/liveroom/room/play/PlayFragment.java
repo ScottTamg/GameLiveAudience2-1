@@ -108,7 +108,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
     /**
      * 自定义的小伙伴view
      */
-    private GetFriendLayout getFriendLayout;
+    //private GetFriendLayout getFriendLayout;
 
     /**
      * 触摸移动
@@ -210,10 +210,10 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
         timingLogger.reset(TIMING_LOG_TAG, "PlayerFragment#initViews");
         presenter = new PlayPresenter(this);
         loginInfo = DataManager.getInstance().getLoginInfo();
-        if (loginInfo != null) {
-            presenter.watchLive(loginInfo.getToken(), loginInfo.getUserId(), mSummary.getUserId() + "");
-        }
-        getFriendLayout = (GetFriendLayout) friendLayout.findViewById(R.id.friend);
+//        if (loginInfo != null) {
+//            presenter.watchLive(loginInfo.getToken(), loginInfo.getUserId(), mSummary.getUserId() + "");
+//        }
+        //getFriendLayout = (GetFriendLayout) friendLayout.findViewById(R.id.friend);
         moveInculde = $(view, R.id.room_move_view);
 
         //显示主播信息
@@ -326,7 +326,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
         timingLogger.addSplit("this.initView");
 //          得到主播信息，为了获取当前直播状态而已
         presenter.loadUserInfo(mAnchorId, false);
-        presenter.loadFriendList();
+        //presenter.loadFriendList();
 
         surfaceFrame = $(view, R.id.room_player_frame);
 
@@ -1087,7 +1087,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
 
     @Override
     public void showFriendList(List<GetFriendBean> friendBeanList) {
-        getFriendLayout.setFriendList(friendBeanList);
+        //getFriendLayout.setFriendList(friendBeanList);
     }
 
     @Override
@@ -1345,7 +1345,12 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
     private Subscription mAnchorNetSubscription;
     @Override
     public void onError() {
-        toastShort(getString(R.string.msg_anchor_network_error));
+        try{
+            toastShort(getString(R.string.msg_anchor_network_error));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (((RoomActivity) getActivity())!=null)
         ((RoomActivity) getActivity()).showRoomEndInfoDialog(
                 0,
                 "0",
