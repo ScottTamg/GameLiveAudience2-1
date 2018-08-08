@@ -7,6 +7,12 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
 /**
  * Created by 刘景 on 2017/05/11.
  */
@@ -103,5 +109,31 @@ public class Networks {
         intent.setComponent(cm);
         intent.setAction(Intent.ACTION_VIEW);
         activity.startActivityForResult(intent, 0);
+    }
+
+    /**
+     * 获取手机的ip网络的ip地址
+     * @param context
+     * @return
+     */
+    public static String getIP(Context context){
+
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)
+                {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && (inetAddress instanceof Inet4Address))
+                    {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        }
+        catch (SocketException ex){
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

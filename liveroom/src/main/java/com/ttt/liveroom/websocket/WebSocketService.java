@@ -227,6 +227,7 @@ public class WebSocketService extends Service {
         }
         Gson gson = new Gson();
         String msg = gson.toJson(request);
+        Log.e("dispatchMessage",msg);
         webSocket.send(msg);
     }
 

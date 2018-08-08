@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
 import android.view.Gravity;
@@ -27,6 +28,7 @@ import com.ttt.liveroom.base.BaseFragment;
 import com.ttt.liveroom.bean.WebSocketInfoBean;
 import com.ttt.liveroom.net.Constants;
 import com.ttt.liveroom.room.play.PlayFragment;
+import com.ttt.liveroom.util.Networks;
 import com.ttt.liveroom.websocket.SocketConstants;
 import com.ttt.liveroom.websocket.WebSocketService;
 import com.ttt.liveroom.widget.viewpager.VerticalViewPager;
@@ -34,6 +36,7 @@ import com.ttt.liveroom.widget.viewpager.VerticalViewPager;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+import java.util.Random;
 
 import rx.Subscription;
 
@@ -229,13 +232,18 @@ public class RoomActivity extends BaseActivity implements HomeUiInterface {
 
         presenter = new HomePresenter(this);
         Log.e("RoomActivity", "mLiveId==" + "" + mLiveId + " rtmp=" + mPullRtmp);
-
-        presenter.getWebSocket(mLiveId);
+        String ip = Networks.getIP(RoomActivity.this);
+        if (ip!=null&&!TextUtils.isEmpty(ip)){
+            presenter.getWebSocket(mLiveId,Constants.APP_ID,ip);
+        }else{
+            presenter.getWebSocket(mLiveId,Constants.APP_ID,(int)(Math.random()*900)+100+"."+(int)(Math.random()*900)+100+"."+(int)(Math.random()*900)+100);
+        }
     }
 
     @Override
     public void getWebSocketSuccess(WebSocketInfoBean bean) {
         Constants.SOCKET_URL = getResources().getString(R.string.web_socket_url, bean.getRoomServer().getHost(), bean.getRoomServer().getPort());
+        Log.e("###",Constants.SOCKET_URL);
         bindService(WebSocketService.createIntent(this), wsConnection, BIND_AUTO_CREATE);
     }
 

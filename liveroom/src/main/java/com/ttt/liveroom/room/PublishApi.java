@@ -55,7 +55,8 @@ public interface PublishApi {
      * @return
      */
     @GET("server/location")
-    Observable<BaseResponse<WebSocketInfoBean>> getWebSocket(@Query("roomId") String roomId);
+    Observable<BaseResponse<WebSocketInfoBean>> getWebSocket(@Query("roomId") String roomId ,@Query("appId") String appId,
+                                                             @Query("ip") String ip);
 
     @FormUrlEncoded
     @POST("/follow/attention")

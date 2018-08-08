@@ -14,7 +14,11 @@ public class Constants {
      * 基地址
      */
 //    public static final String MAIN_HOST_FOR_PING = "dev.api.customize.3ttech.cn/";//2.0版本
-    public static final String MAIN_HOST_FOR_PING = "118.25.93.124/";
+    public static final String MAIN_HOST_FOR_PING = "pkqzb.crimoon.net/";
+    /**
+     * 视频直播appid 如果修改 修改这个地方即可
+     */
+    public static final String APP_ID = "555e189bf1278119c78f6b1753bfe4b5";
     //服务器root地址
     public static String MAIN_HOST_URL = "http://" + MAIN_HOST_FOR_PING;
 

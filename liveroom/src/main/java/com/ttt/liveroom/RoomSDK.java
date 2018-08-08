@@ -3,6 +3,7 @@ package com.ttt.liveroom;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.ttt.liveroom.net.Constants;
 import com.ttt.liveroom.room.utils.TTTSDK;
 import com.ttt.liveroom.util.SPUtils;
 
@@ -32,7 +33,7 @@ public class RoomSDK {
         SPUtils.init(mContext, "gamelive");
         Fresco.initialize(mContext);
         //天象APPID
-        TTTSDK.init(mContext, "555e189bf1278119c78f6b1753bfe4b5");
+        TTTSDK.init(mContext, Constants.APP_ID);
     }
 
     public static Context getContext() {

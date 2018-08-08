@@ -23,8 +23,8 @@ public class HomePresenter extends BasePresenter<HomeUiInterface> {
     }
 
     //获取websocket信息
-    public void getWebSocket(@NonNull String roomId){
-        Subscription subscription = NetManager.getInstance().create(PublishApi.class).getWebSocket(roomId)
+    public void getWebSocket(@NonNull String roomId, @NonNull String appId,@NonNull String ip){
+        Subscription subscription = NetManager.getInstance().create(PublishApi.class).getWebSocket(roomId,appId,ip)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseObserver<BaseResponse<WebSocketInfoBean>>(getUiInterface()) {
