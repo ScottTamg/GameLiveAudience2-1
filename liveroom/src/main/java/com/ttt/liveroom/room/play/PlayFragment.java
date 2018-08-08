@@ -480,6 +480,9 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                             public void call(Void aVoid) {
                                 giftComboCount = Integer.parseInt(tvNum.getText().toString());
                                 mGiftSendList.setText(String.valueOf(giftComboCount));
+                                if (popupWindowGiftSendList!=null&&popupWindowGiftSendList.isShowing()){
+                                    popupWindowGiftSendList.dismiss();
+                                }
                             }
                         });
             }
