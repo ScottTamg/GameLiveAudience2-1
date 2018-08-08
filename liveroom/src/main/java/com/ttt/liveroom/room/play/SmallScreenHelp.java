@@ -84,7 +84,7 @@ public class SmallScreenHelp implements View.OnClickListener {
         mWindowManager = (WindowManager) mContext.getApplication().getSystemService(Activity.WINDOW_SERVICE);
         wmParams = new WindowManager.LayoutParams();
         // 更多type：https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#TYPE_PHONE
-        if (Build.VERSION.SDK_INT > 24) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
             wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
             wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;

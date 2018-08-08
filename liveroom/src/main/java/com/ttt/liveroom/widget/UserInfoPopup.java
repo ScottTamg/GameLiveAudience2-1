@@ -110,7 +110,12 @@ public class UserInfoPopup extends PopupWindow implements View.OnTouchListener,
         }
 
         //名称
-        info_name.setText(mUserInfo.getUserName());
+        if (TextUtils.isEmpty(mUserInfo.getNickName())){
+            info_name.setVisibility(View.GONE);
+        }else{
+            info_name.setVisibility(View.VISIBLE);
+            info_name.setText(mUserInfo.getNickName());
+        }
     }
 
 
