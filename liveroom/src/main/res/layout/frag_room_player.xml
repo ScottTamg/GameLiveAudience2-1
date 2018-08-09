@@ -91,6 +91,18 @@
             android:layout_height="100dp"
             android:layout_above="@+id/room_recycler_chat"
             android:layout_marginTop="20dp" />
+        <!--连麦请求成功的弹框-->
+        <com.ttt.liveroom.widget.LiveView
+            android:id="@+id/local_surface_view_a"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp180"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@drawable/shape_live_bg"
+            android:padding="@dimen/dp4"
+            android:visibility="invisible" />
         <!-- 礼物 -->
         <include layout="@layout/room_layout_gift" />
 
@@ -137,17 +149,7 @@
             android:padding="@dimen/dp4"
             android:visibility="invisible" />
 
-        <com.ttt.liveroom.widget.LiveView
-            android:id="@+id/local_surface_view_a"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/dp180"
-            android:layout_marginRight="@dimen/dp10"
-            android:background="@drawable/shape_live_bg"
-            android:padding="@dimen/dp4"
-            android:visibility="invisible" />
+
 
         <FrameLayout
             android:id="@+id/fl_im"
