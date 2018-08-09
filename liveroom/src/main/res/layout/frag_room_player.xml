@@ -103,11 +103,6 @@
             android:background="@drawable/shape_live_bg"
             android:padding="@dimen/dp4"
             android:visibility="invisible" />
-        <!-- 礼物 -->
-        <include layout="@layout/room_layout_gift" />
-
-
-
         <LinearLayout
             android:id="@+id/rl_applay_connect_mic"
             android:layout_width="@dimen/dp60"
@@ -136,6 +131,12 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp10" />
         </LinearLayout>
+        <!-- 礼物 -->
+        <include layout="@layout/room_layout_gift" />
+
+
+
+
 
         <com.ttt.liveroom.widget.LiveView
             android:id="@+id/local_surface_view_b"

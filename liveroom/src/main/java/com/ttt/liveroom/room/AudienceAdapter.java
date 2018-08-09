@@ -1,6 +1,7 @@
 package com.ttt.liveroom.room;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.ttt.liveroom.bean.LoginInfo;
 import com.ttt.liveroom.bean.UserInfo;
 import com.ttt.liveroom.bean.websocket.SystemWelcome;
 import com.ttt.liveroom.net.NetManager;
+import com.ttt.liveroom.util.AvatarUtils;
 
 import java.util.List;
 
@@ -52,9 +54,10 @@ public class AudienceAdapter extends SimpleRecyclerAdapter<SystemWelcome.SystemW
         private SimpleDraweeView draweeAvatar;
         private ImageView icon;
         private UserInfo mInfo;
-
+        private AvatarUtils avatarUtils;
         public AudienceHolder(View itemView) {
             super(itemView);
+            avatarUtils = new AvatarUtils();
             draweeAvatar = (SimpleDraweeView) itemView.findViewById(R.id.img_user_avatar);
             icon = (ImageView) itemView.findViewById(R.id.img_user_star_type);
         }
@@ -72,9 +75,13 @@ public class AudienceAdapter extends SimpleRecyclerAdapter<SystemWelcome.SystemW
             mInfo.setAvatar(data.getAvatar());
             mInfo.setNickName(data.getNickName());
             mInfo.setLevel(data.getLevel());
-            if (!TextUtils.isEmpty(avatar)) {
-                draweeAvatar.setImageURI(NetManager.wrapPathToUri(avatar));
-            }
+//            if (!TextUtils.isEmpty(avatar)) {
+//                draweeAvatar.setImageURI(NetManager.wrapPathToUri(avatar));
+//            }
+
+            String uriStr = "android.resource://" + context.getPackageName() + "/"+avatarUtils.getRandomAvatar();
+            Uri uri=Uri.parse(uriStr);
+            draweeAvatar.setImageURI(uri);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

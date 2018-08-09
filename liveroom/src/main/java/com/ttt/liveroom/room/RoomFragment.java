@@ -167,7 +167,7 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
     protected TextView mHostFansAccount;
 
     private RecyclerView recyclerAudienceList;
-    private AudienceAdapter audienceAdapter;
+    protected AudienceAdapter audienceAdapter;
 
     protected int[] heartColorArray;
     private int defaultColorIndex;

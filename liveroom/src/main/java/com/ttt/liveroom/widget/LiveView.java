@@ -159,7 +159,22 @@ public class LiveView extends RelativeLayout {
             }
         }
     }
+    /**
+     * 设置连麦头像和昵称
+     *
+     * @param avatar
+     */
+    public void setUserInfoContent(int avatar, String id) {
+            if (mImageView!=null&&avatar>0){
+                mImageView.setImageResource(avatar);
+                mImageView.setVisibility(View.VISIBLE);
+            }
 
+            if (mTextView != null && !TextUtils.isEmpty(id)) {
+                mTextView.setText(id);
+                mTextView.invalidate();
+            }
+    }
     public void showClose(boolean show) {
         if (isAudio) {
             initBg();

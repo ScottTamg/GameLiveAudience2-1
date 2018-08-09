@@ -58,6 +58,7 @@ import com.ttt.liveroom.room.RoomFragment;
 import com.ttt.liveroom.room.ijkplayer.PlayerManager;
 import com.ttt.liveroom.room.utils.EnterUserInfo;
 import com.ttt.liveroom.room.window.PlayerActivityManager;
+import com.ttt.liveroom.util.AvatarUtils;
 import com.ttt.liveroom.util.MrlCountDownTimer;
 import com.ttt.liveroom.util.Networks;
 import com.ttt.liveroom.websocket.SocketConstants;
@@ -1313,6 +1314,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
         LiveView freeViewLive = getFreeViewLive();
         freeViewLive.setFlagUserId(userInfo.getId());
         freeViewLive.setFree(false);
+        freeViewLive.setAudio(true);
         if (userInfo.getId() == Long.parseLong(loginInfo.getUserId())) {
             freeViewLive.showClose(true);
             mRoomLiveHelp.openLocalVideo(freeViewLive, true);
@@ -1320,6 +1322,8 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
             freeViewLive.showClose(false);
             mRoomLiveHelp.openRemoteVideo(freeViewLive, userInfo, true);
         }
+        AvatarUtils avatarUtils = new AvatarUtils();
+        freeViewLive.setUserInfoContent(avatarUtils.getRandomAvatar(), userInfo.getId()+"");
     }
 
     /**
