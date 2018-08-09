@@ -847,10 +847,10 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                 mGiftSentBtn.setEnabled(isSelect);
                 //将数据职位默认值  1
                 mGiftSendList.setText(mGiftSendNumBeans.get(mGiftSendNumBeans.size()-1).getNum()+"");
-                if ("0".equals(giftList.get(position).getIsFire())) {
+                if (isSelect) {
                     mGiftSendList.setVisibility(View.VISIBLE);
                 } else {
-                    mGiftSendList.setVisibility(View.VISIBLE);
+                    mGiftSendList.setVisibility(View.GONE);
                 }
             }
         });
