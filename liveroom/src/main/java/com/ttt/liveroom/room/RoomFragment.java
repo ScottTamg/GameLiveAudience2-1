@@ -544,7 +544,6 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
                     .subscribe(new Action1<Void>() {
                         @Override
                         public void call(Void aVoid) {
-                            Log.e("###","5走了");
                             onRootClickAction();
                         }
                     });

@@ -88,7 +88,7 @@
         <master.flame.danmaku.ui.widget.DanmakuView
             android:id="@+id/mrl_danmaku"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_above="@+id/room_recycler_chat"
             android:layout_marginTop="20dp" />
         <!--连麦请求成功的弹框-->
