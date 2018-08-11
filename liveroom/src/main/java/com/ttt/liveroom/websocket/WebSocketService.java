@@ -343,8 +343,8 @@ public class WebSocketService extends Service {
                             L.e(LOG_TAG, "Continuous connection error occurred for %d times!",
                                     connectionAttemptCount);
                             L.i(LOG_TAG, "Force starting diagnosis service");
-                            startService(new Intent(WebSocketService.this,
-                                    NetworkDiagnosisService.class));
+//                            startService(new Intent(WebSocketService.this,
+//                                    NetworkDiagnosisService.class));
                             //重置标记
                             connectionAttemptCount = 0;
                         }

@@ -80,6 +80,7 @@ import com.ttt.liveroom.room.play.RoomNetBroadcastReceiver.NetEvevt;
 import com.ttt.liveroom.room.pubmsg.PublicChatAdapter;
 import com.ttt.liveroom.room.utils.RoomLiveHelp;
 import com.ttt.liveroom.room.utils.RoomLiveInterface;
+import com.ttt.liveroom.util.AvatarUtils;
 import com.ttt.liveroom.util.L;
 import com.ttt.liveroom.util.danmu.DanmuControl;
 import com.ttt.liveroom.util.roomanim.CarView;
@@ -1020,6 +1021,7 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
     protected ReportPopup mReportPopup;
     protected LmManagePopup mLmManagePopup;
     protected FrameLayout mFrameLayout;
+    private AvatarUtils avatarUtils = new AvatarUtils();
     /**
      * 展示用户信息的弹出框
      */
@@ -1428,19 +1430,24 @@ public abstract class RoomFragment extends BaseFragment implements RoomActivity.
                     if (isMeSend) {
                         showInputLayout(false);
                     }
+                    Log.e("###",msg.getMessage());
                     danmu = new Danmu(0, (int) (Math.random() * (3)), "Comment", msg.getData().getNickName() + ": " + msg.getMessage());
-                    if (!TextUtils.isEmpty(msg.getData().getAvatar())) {
-                        Glide.with(RoomFragment.this).load(msg.getData().getAvatar()).asBitmap().into(new SimpleTarget<Bitmap>() {
-                            @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                danmu.setAvatarUrl(resource);
-                                mDanmuControl.addDanmu(danmu, 1);
-                            }
-                        });
-                    } else {
-                        danmu.setAvatarUrl(BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_launcher_author));
-                        mDanmuControl.addDanmu(danmu, 1);
-                    }
+                    danmu.setAvatarUrl(BitmapFactory.decodeResource(getResources(),avatarUtils.getRandomAvatar()));
+                    mDanmuControl.addDanmu(danmu, 1);
+//                    if (!TextUtils.isEmpty(msg.getData().getAvatar())) {
+//                        Glide.with(RoomFragment.this).load(msg.getData().getAvatar()).asBitmap().into(new SimpleTarget<Bitmap>() {
+//                            @Override
+//                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                                danmu.setAvatarUrl(resource);
+//                                Log.e("###",true+"");
+//                                mDanmuControl.addDanmu(danmu, 1);
+//                            }
+//                        });
+//                    } else {
+//                        danmu.setAvatarUrl(BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_launcher_author));
+//                        Log.e("###",false+"");
+//                        mDanmuControl.addDanmu(danmu, 1);
+//                    }
                 }
                 if (DataManager.getInstance().getLoginInfo() != null) {
                     //如果不是用户本人的信息则添加到Recycleview
