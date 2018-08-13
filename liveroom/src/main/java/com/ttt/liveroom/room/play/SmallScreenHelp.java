@@ -32,10 +32,17 @@ public class SmallScreenHelp implements View.OnClickListener {
 
     private static Activity mContext;
     private static SmallScreenHelp instance;
+    /**
+     * 是否已经展示windowview
+     */
+    private boolean isShowWindowView = false;
     private WindowManager.LayoutParams wmParams;
     private WindowManager mWindowManager;
     private View mWindowView;
 
+    public boolean isShowWindowView() {
+        return isShowWindowView;
+    }
 
     private int mStartX;
     private int mStartY;
@@ -58,7 +65,7 @@ public class SmallScreenHelp implements View.OnClickListener {
     private View mSHowNoview;
     private RelativeLayout mRlSmallVideoRoot;
     private RelativeLayout mAvatarRoot;
-
+    private boolean isVideo = false;
 
     private void SmallScreenHelp() {
     }
@@ -129,10 +136,20 @@ public class SmallScreenHelp implements View.OnClickListener {
         mIvSChangeMiddle.setOnClickListener(this);
         mIvSExit.setOnClickListener(this);
         mIvSsuoxiao.setOnClickListener(this);
+        //如果是音频直播  只是显示黄色长条
+        if (isVideo){
+            mShowview.setVisibility(View.VISIBLE);
+            mSHowNoview.setVisibility(View.GONE);
+        }else{
+            mShowview.setVisibility(View.GONE);
+            mSHowNoview.setVisibility(View.VISIBLE);
+        }
     }
 
 
-    public void starChangeSmall() {
+    public void starChangeSmall(boolean isVideo) {
+        this.isVideo=isVideo;
+        isShowWindowView = true;
         initWindowParams();
         initView();
         addWindowView2Window();
@@ -175,17 +192,39 @@ public class SmallScreenHelp implements View.OnClickListener {
             smallViewChange(true);
 
         } else if (i == R.id.iv_s_change_middle) {
-            mRlSmallVideoRoot.removeView(mVideoView);
-            mRlVideoRoot.removeAllViews();
-            mRlVideoRoot.addView(mVideoView, 0);
-            mShowview.setVisibility(View.VISIBLE);
-            mSHowNoview.setVisibility(View.GONE);
-            if (mVideoView != null) {
-                mVideoView.stopPlayback();
-                mRlVideoRoot.removeView(mVideoView);
-                mVideoView = null;
-                addVideoView(mRlVideoRoot);
+            //如果是视频直播 按照原逻辑  放大缩小框
+            if (isVideo){
+                mRlSmallVideoRoot.removeView(mVideoView);
+                mRlVideoRoot.removeAllViews();
+                mRlVideoRoot.addView(mVideoView, 0);
+                mShowview.setVisibility(View.VISIBLE);
+                mSHowNoview.setVisibility(View.GONE);
+                if (mVideoView != null) {
+                    mVideoView.stopPlayback();
+                    mRlVideoRoot.removeView(mVideoView);
+                    mVideoView = null;
+                    addVideoView(mRlVideoRoot);
+                }
+            }else{
+                //否则就是音频直播  直接打开直播界面
+                NewestAuthorBean.ListBean bean = Config.LIVE_DATA;
+                String hostInfo = new Gson().toJson(bean);
+                mContext.startActivity(RoomActivity.createIntent(mContext,
+                        RoomActivity.TYPE_VIEW_LIVE,
+                        bean.getId(),
+                        String.valueOf(bean.getUserId()),
+                        bean.getAvatar(),
+                        bean.getNickName(),
+                        String.valueOf(bean.getLevel()),
+                        bean.getTitle(),
+                        bean.getPullRtmp(),
+                        false,
+                        bean.getRoomId(),
+                        bean.getType(),
+                        PlayFragment.createArgs(hostInfo)));
+                removeWindowView();
             }
+
 
         } else if (i == R.id.iv_s_exit) {
             removeWindowView();
@@ -242,6 +281,7 @@ public class SmallScreenHelp implements View.OnClickListener {
     }
 
     private void removeWindowView() {
+        isShowWindowView = false;
         if (mWindowView != null) {
             if (mVideoView != null) {
                 mVideoView.stopPlayback();

@@ -36,7 +36,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RoomInterface {
     private static final int OVERLAY_PERMISSION_REQ_CODE = 100;
-
+    /**
+     * 是否已经展示windowview
+     */
+    private static boolean isShowWindowView = false;
     private TextView mTvAudienceStEnter;
     private SmallScreenHelp mSmallInstance;
     private LiveListDialog dialog;
@@ -161,10 +164,11 @@ public class MainActivity extends AppCompatActivity implements RoomInterface {
     }
 
     @Override
-    public void changeSmall() {
+    public void changeSmall(boolean isVideo) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (Settings.canDrawOverlays(MainActivity.this)) {
-                mSmallInstance.starChangeSmall();
+                if (!mSmallInstance.isShowWindowView())
+                    mSmallInstance.starChangeSmall(isVideo);
             } else {
                 //若没有权限，提示获取.
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
@@ -172,7 +176,8 @@ public class MainActivity extends AppCompatActivity implements RoomInterface {
                 startActivity(intent);
             }
         } else {
-            mSmallInstance.starChangeSmall();
+            if (!mSmallInstance.isShowWindowView())
+                mSmallInstance.starChangeSmall(isVideo);
         }
     }
 

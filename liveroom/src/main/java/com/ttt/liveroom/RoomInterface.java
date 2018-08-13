@@ -30,7 +30,8 @@ public interface RoomInterface {
 
     /**
      * 直播界面切换成小屏的时候调用
+     * @param isVideo  是否是视频直播  true未视频直播   false为音频直播
      */
-    void changeSmall();
+    void changeSmall(boolean isVideo);
 
 }

@@ -48,6 +48,8 @@ public class Constants {
     public static final String IM_LOG_TAG = "IM_LOG_TAG";
 
     public static String IS_LIVE;
-
-
+    /**
+     * 查看是音频直播还是视频直播  true为视频直播
+     */
+    public static boolean isVideo;
 }

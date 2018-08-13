@@ -243,9 +243,11 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
         // 点击开始连麦
         mRlApplayConnectMic = $(view, R.id.rl_applay_connect_mic);
         if (Constants.IS_LIVE.equals("0")) {
+            Constants.isVideo = false;
             mRlApplayConnectMic.setVisibility(View.VISIBLE);
         } else {
             mRlApplayConnectMic.setVisibility(View.GONE);
+            Constants.isVideo = true;
         }
         mRoomImgbtnLm = $(view, R.id.room_imgbtn_lm);
         mTvMicText = $(view, R.id.tv_mic_text);
@@ -379,7 +381,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
             public void call(Void aVoid) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (Settings.canDrawOverlays(getActivity())) {
-                        RoomManager.getInstance().getRoomInstance().changeSmall();
+                        RoomManager.getInstance().getRoomInstance().changeSmall(Constants.isVideo);
                         ((RoomActivity) getActivity()).exitLiveRoom(getRoomType() != TYPE_VIEW_LIVE);
                     } else {
                         //若没有权限，提示获取.
@@ -388,7 +390,7 @@ public class PlayFragment extends RoomFragment implements PlayerUiInterface,
                         startActivity(intent);
                     }
                 } else {
-                    RoomManager.getInstance().getRoomInstance().changeSmall();
+                    RoomManager.getInstance().getRoomInstance().changeSmall(Constants.isVideo);
                     ((RoomActivity) getActivity()).exitLiveRoom(getRoomType() != TYPE_VIEW_LIVE);
                 }
 
